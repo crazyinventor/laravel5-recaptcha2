@@ -5,9 +5,12 @@
     "authors": [
         {
             "name": "David Schneider",
-            "email": "david@crazyinventor.net"
+            "email": "david@crazyinventor.net",
+            "homepage": "http://www.crazyinventor.net",
+            "role": "Developer"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "5.0.*|5.1.*"
