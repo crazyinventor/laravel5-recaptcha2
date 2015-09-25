@@ -38,10 +38,10 @@ class Lacaptcha {
      * @param string $site_secret
      * @param string $site_key
      */
-    public function __construct($site_secret, $site_key)
+    public function __construct($site_key, $site_secret)
     {
-        $this->site_secret = $site_secret;
         $this->site_key = $site_key;
+        $this->site_secret = $site_secret;
     }
 
     /**
