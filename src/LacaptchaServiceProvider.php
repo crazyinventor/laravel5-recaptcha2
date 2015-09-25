@@ -14,13 +14,8 @@ class LacaptchaServiceProvider extends ServiceProvider
     {
         $app = $this->app;
         $app['validator']->extend('recaptcha', function ($attribute, $value) use ($app) {
-            return $app['recaptcha']->verifyResponse($value, $app['request']->getClientIp());
+            return $app['recaptcha']->verify($value, $app['request']->getClientIp()) == true;
         });
-        if ($app->bound('form')) {
-            $app['form']->macro('recaptcha', function ($attributes = []) use ($app) {
-                return $app['recaptcha']->display($attributes, $app->getLocale());
-            });
-        }
     }
     
     /**

@@ -56,6 +56,7 @@ class Lacaptcha {
         $html .= '<div class="g-recaptcha"'.$this->buildAttributes($attributes).'></div>';
         return $html;
     }
+    
     /**
      * Get recaptcha js link.
      *
@@ -84,8 +85,8 @@ class Lacaptcha {
 
     public function verify($recaptcha, $ip)
     {
-        $response = json_decode($this->requestVerification($recaptcha, $ip));
-        return $response['success'];
+        $response = json_decode($this->requestVerification($recaptcha, $ip), true);
+        return ($response['success']);
     }
 
     protected function requestVerification($recaptcha, $ip)
