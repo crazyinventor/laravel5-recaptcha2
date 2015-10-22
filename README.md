@@ -8,7 +8,7 @@ Run 'composer require crazyinventor/laravel5-recaptcha2' or modify your composer
 ```json
 {
     "require": {
-        "anhskohbo/no-captcha": "2.*"
+        "crazyinventor/laravel5-recaptcha2": "1.0.1"
     }
 }
 ```
