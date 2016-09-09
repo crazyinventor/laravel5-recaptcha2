@@ -22,6 +22,14 @@ RECAPTCHA_SITEKEY=[site-key]
 ```
 Replace `[secret-key]` and `[site-key]` with your keys.
 
+You can also hardcode the configuration. First publish the `recaptcha` configuration file by running the following command from a shell inside your Laravel's installation directory:
+
+```
+php artisan vendor:publish
+```
+
+This will create the file `config/recaptcha.php` in your Laravel's installation directory. Modify that file by entering your sitekey and secret.
+
 #### Laravel 5.0
 
 In `/config/app.php`, add the following to `providers`:
@@ -33,7 +41,7 @@ and the following to `aliases`:
 'Recaptcha' => 'CrazyInventor\Lacaptcha\Facades\Lacaptcha',
 ```
 
-#### Laravel 5.1
+#### Laravel 5.1 and newer
 
 In `/config/app.php`, add the following to `providers`:
 ```
@@ -46,7 +54,7 @@ and the following to `aliases`:
 
 ## Usage
 
-1. In your form, use {!! Recaptcha::render() !!} to echo out the markup.
+1. In your form, use `{!! Recaptcha::render() !!}` to echo out the markup.
 2. To validate your form, add the following rule:
 ```php
 $rules = [

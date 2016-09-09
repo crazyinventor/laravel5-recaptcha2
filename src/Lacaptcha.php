@@ -71,7 +71,6 @@ class Lacaptcha {
      * Build attributes for recaptcha tag.
      *
      * @param array $attributes
-     *
      * @return string
      */
     protected function buildAttributes($attributes)
@@ -83,12 +82,26 @@ class Lacaptcha {
         return count($html) ? ' '.implode(' ', $html) : '';
     }
 
+    /**
+     * Verify entered captcha code
+     *
+     * @param $recaptcha
+     * @param $ip
+     * @return mixed
+     */
     public function verify($recaptcha, $ip)
     {
         $response = json_decode($this->requestVerification($recaptcha, $ip), true);
         return ($response['success']);
     }
 
+    /**
+     * Request verification of captcha code
+     *
+     * @param $recaptcha
+     * @param $ip
+     * @return mixed
+     */
     protected function requestVerification($recaptcha, $ip)
     {
         $url=static::VERIFY_URL."?secret=".$this->site_secret."&response=".$recaptcha."&remoteip=".$ip;

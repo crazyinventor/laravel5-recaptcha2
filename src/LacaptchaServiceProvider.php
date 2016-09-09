@@ -2,7 +2,6 @@
 
 namespace CrazyInventor\Lacaptcha;
 
-use CrazyInventor\Lacaptcha\Lacaptcha;
 use Illuminate\Support\ServiceProvider;
 
 class LacaptchaServiceProvider extends ServiceProvider
@@ -12,10 +11,15 @@ class LacaptchaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Add a validation rule called 'recaptcha' to be used for form validation
         $app = $this->app;
         $app['validator']->extend('recaptcha', function ($attribute, $value) use ($app) {
             return $app['recaptcha']->verify($value, $app['request']->getClientIp()) == true;
         });
+        // make config file installable
+        $this->publishes([
+            __DIR__.'/../config/recaptcha.php' => config_path('recaptcha.php'),
+        ], 'config');
     }
     
     /**
@@ -27,8 +31,8 @@ class LacaptchaServiceProvider extends ServiceProvider
     {
         $this->app->bind('recaptcha', function ($app) {
             return new Lacaptcha(
-                env('RECAPTCHA_SITEKEY', ''),
-                env('RECAPTCHA_SECRET', '')
+                config('recaptcha.sitekey'),
+                config('recaptcha.secret')
             );
         });
     }
