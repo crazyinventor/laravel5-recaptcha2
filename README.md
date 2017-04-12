@@ -15,20 +15,9 @@ Run 'composer require crazyinventor/laravel5-recaptcha2' or modify your composer
 
 ## Configuration
 
-Get your keys for recaptcha from the [admin page](https://www.google.com/recaptcha/admin#list). Add `RECAPTCHA_SECRET` and `RECAPTCHA_SITEKEY` to your **.env** file:
-```
-RECAPTCHA_SECRET=[secret-key]
-RECAPTCHA_SITEKEY=[site-key]
-```
-Replace `[secret-key]` and `[site-key]` with your keys.
+Get your keys for recaptcha from the [admin page](https://www.google.com/recaptcha/admin#list).
 
-You can also hardcode the configuration. First publish the `recaptcha` configuration file by running the following command from a shell inside your Laravel's installation directory:
-
-```
-php artisan vendor:publish
-```
-
-This will create the file `config/recaptcha.php` in your Laravel's installation directory. Modify that file by entering your sitekey and secret.
+Then register the Service Provider.
 
 #### Laravel 5.0
 
@@ -51,6 +40,25 @@ and the following to `aliases`:
 ```
 'Recaptcha' => CrazyInventor\Lacaptcha\Facades\Lacaptcha::class,
 ```
+
+#### Publish config file
+
+Publish the `recaptcha` configuration file by running the following command from a shell inside your Laravel's installation directory:
+
+```
+php artisan vendor:publish
+```
+
+This will create the file `config/recaptcha.php` in your Laravel's installation directory. You can modify this file by entering your sitekey and secret directly to it or adding the keys to your **.env** file.
+
+#### .env file
+
+ Add `RECAPTCHA_SECRET` and `RECAPTCHA_SITEKEY` to your **.env** file:
+```
+RECAPTCHA_SECRET=[secret-key]
+RECAPTCHA_SITEKEY=[site-key]
+```
+Replace `[secret-key]` and `[site-key]` with your keys.
 
 ## Usage
 
