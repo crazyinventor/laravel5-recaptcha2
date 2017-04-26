@@ -84,3 +84,14 @@ Recaptcha::shouldReceive('render')
     ->zeroOrMoreTimes()
     ->andReturn('<input type="hidden" name="g-recaptcha-response" value="1" />');
 ```
+
+## Testing with Laravel 5.4 and Dusk
+
+Unfortunately, mocking does not work for Laravel Dusk. But you can overwrite the validator function very easily by adding the following code to your test.
+
+```php
+$app = $this->app;
+    $app['validator']->extend('recaptcha', function ($attribute, $value) use ($app) {
+    return true;
+});
+```
